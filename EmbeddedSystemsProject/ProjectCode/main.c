@@ -39,6 +39,7 @@ int main(void){
 }
 
 // PORTD and PORTE setup and number of rows/columns of the matrix.
+// testing git comment?? - DELETE
 void keypadInit(){ volatile unsigned long delay; 
 	// init PORTD [0,3]
 	SYSCTL_RCGC2_R |= 0x08;     			// 1) activate bit 3
@@ -60,9 +61,7 @@ void keypadInit(){ volatile unsigned long delay;
   GPIO_PORTE_PCTL_R = 0x00000000;   // 4) GPIO clear bit PCTL  
   GPIO_PORTE_DIR_R = 0x00;          // 5) PE0, PE1, PE2, PE3 inputs 
   GPIO_PORTE_AFSEL_R = 0x00;        // 6) no alternate function      
-  GPIO_PORTE_DEN_R = 0x0F;          // 7) enable digital pins PE4-PE0
-
-	
+  GPIO_PORTE_DEN_R = 0x0F;          // 7) enable digital pins PE3-PE0
 
 }
 
