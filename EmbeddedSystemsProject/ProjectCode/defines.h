@@ -3,7 +3,9 @@
 
 // definitions
 // define port A pins 2 & 3 : Port A Base Address = 0x4000.4000
-#define GPIO_PORTA_DATA_R       (*((volatile unsigned long *)0x40004030)) // pin-specific referencing as we are only using pins 2 and 3
+#define GPIO_PORTA_DATA_R       (*((volatile unsigned long *)0x400043FC)) // pin-specific referencing as we are only using pins 2 and 3
+#define GPIO_PA2 								(*((volatile unsigned long *)0x40004010))
+#define GPIO_PA3								(*((volatile unsigned long *)0x40004020))
 #define GPIO_PORTA_DIR_R        (*((volatile unsigned long *)0x40004400)) // Pin Direction Register
 #define GPIO_PORTA_AFSEL_R      (*((volatile unsigned long *)0x40004420)) // Special Function Enable
 #define GPIO_PORTA_DEN_R        (*((volatile unsigned long *)0x4000451C)) // Digital Pin Enable
