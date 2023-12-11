@@ -1,18 +1,10 @@
 /**********************************************************************************
-// 0. Documentation Section 
-// main.c
-// Runs TM4C123
-// Lab2_HelloLaunchPad, Input from PF4, output to PF3,PF2,PF1 (LED)
-// Authors: Karolina Mungai Ndungu (el21kamn)
-// Date started: 16/11/23
+*       0. Documentation Section                                                  *
+*       main.c                                                                    *
+*       Runs TM4C123                                                              *
+*       Authors: Karolina Mungai Ndungu (el21kamn)                                *
+*       Date started: 16/11/23                                                    *
 **********************************************************************************/
-
-// LaunchPad built-in hardware
-// SW1 left switch is negative logic PF4 on the Launchpad
-// SW2 right switch is negative logic PF0 on the Launchpad
-// red LED connected to PF1 on the Launchpad
-// blue LED connected to PF2 on the Launchpad
-// green LED connected to PF3 on the Launchpad
 
 // 1. Pre-processor Directives Section
 // Constant declarations to access port registers using 
@@ -22,8 +14,6 @@
 
 // 2. Declarations Section
 //   Global Variables
-unsigned long In;
-unsigned long Out;
 
 //   Function Prototypes
 void keypadInit(void); // PORTD and PORTE setup and number of rows/columns of the matrix.
@@ -47,12 +37,13 @@ void keypadInit(){ volatile unsigned long delay;
 	SYSCTL_RCGC2_R |= 0x20;     			// 1) activate bit 3
   delay = SYSCTL_RCGC2_R;           // delay  
 	GPIO_PORTD_LOCK_R = 0x4C4F434B;   // 2) unlock PortD PD0  
-  GPIO_PORTD_CR_R = 0x3C;           // allow changes to PD3-0       
+  GPIO_PORTD_CR_R = 0x3C;           // allow changes to PD3-PD0       
   GPIO_PORTD_AMSEL_R = 0x00;        // 3) disable analog function
   GPIO_PORTD_PCTL_R = 0x00000000;   // 4) GPIO clear bit PCTL  
-  GPIO_PORTD_DIR_R = 0x0F;          // 5) PD0, PD1, PD2, PD3 output   
-  GPIO_PORTD_AFSEL_R = 0x00;        // 6) no alternate function      
-  GPIO_PORTD_DEN_R = 0x0F;          // 7) enable digital pins PD4-PD0
+  GPIO_PORTD_DIR_R = 0x00;          // 5) PD0, PD1, PD2, PD3 input   
+  GPIO_PORTD_AFSEL_R = 0x00;        // 6) no alternate function
+  GPIO_PORTD_PDR_R = 0x3C;          // enable pull-down resistor on bits PD3-PD0
+  GPIO_PORTD_DEN_R = 0x0F;          // 7) enable digital pins PD3-PD0
 
 	// init PORTE [0,3]
 	SYSCTL_RCGC2_R |= 0x40;     			// 1) activate bit 4
@@ -64,8 +55,7 @@ void keypadInit(){ volatile unsigned long delay;
   GPIO_PORTE_DIR_R = 0x00;          // 5) PE0, PE1, PE2, PE3 inputs 
   GPIO_PORTE_AFSEL_R = 0x00;        // 6) no alternate function      
   GPIO_PORTE_DEN_R = 0x0F;          // 7) enable digital pins PE3-PE0
-
-
+  
 }
 
  // This function returns the key pressed in the keypad matrix.
