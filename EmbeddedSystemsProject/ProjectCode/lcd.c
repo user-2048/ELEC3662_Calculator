@@ -24,7 +24,7 @@ void lcdinit(volatile unsigned long delay) {
 }
 
 void sendDisplayNibble(volatile unsigned long delay) {
-    // 1. Set up RS pin : 0 for instructions, 1 for data
+    // 1. Set up RS pin : 0 for instructions, 1 for data (0 for init. instructions)
 
 
     // 2. Send nibble to the bits of the port
@@ -32,4 +32,15 @@ void sendDisplayNibble(volatile unsigned long delay) {
 
     // 3. Pulse the EN line for 450ns.
 	
+}
+
+void sendDisplayByte() {
+    // sends an 8 bit quantity to the LCD. Must be sent 4 at a time using sendDisplayNibble() twice.
+    // send Bits 4-7 first, then bits 0-3.
+    // see section 5.5 on pg. 9 of the datasheet for an example.
+}
+
+void initDisplayPort() {
+
+
 }
