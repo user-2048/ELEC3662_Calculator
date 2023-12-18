@@ -22,22 +22,23 @@
 // 3. Subroutines Section
 // MAIN: Mandatory for a C Program to be executable
 int main(void){    
-  // Call initialising functions
-  printf("initialising...");
+  // // Call initialising functions
+  printf("Main function called\n");
+  printf("just before systick\n");
   SysTick_Init();
-  PLL_Init();
-  keypadInit();
-  lcdInit();
+  // PLL_Init();
+  // keypadInit();
+  // lcdInit();
 
-  while(1) {
-    printf("Begin calculator functions.");
-    SysTick_Wait(5000); // wait 5 seconds
-    printf("End while loop");
-    break;
-  }
+  // while(1) {
+  //   printf("Begin calculator functions.");
+  //   SysTick_Wait(5000); // wait 5 seconds
+  //   printf("End while loop");
+  //   break;
+  // }
 
-  SysTick_Wait(7000);
-  printf("Okay end function");
+  // SysTick_Wait(7000);
+  // printf("Okay end function");
 
   return 1; 
 }

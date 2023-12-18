@@ -6,10 +6,15 @@
 #include <stdio.h>
 
 void SysTick_Init(void){
+  printf("SysTick called");
   NVIC_ST_CTRL_R = 0;                   // disable SysTick during setup
+  printf("SysTick 1");
   NVIC_ST_RELOAD_R = 0x00FFFFFF;        // maximum reload value - 24bit down-counter. This value sewts the period of the timer
+  printf("SysTick 2");
   NVIC_ST_CURRENT_R = 0;                // clear the current value of the timer   
+  printf("SysTick 3");
   NVIC_ST_CTRL_R = 0x00000005;          // enable SysTick with core clock
+  printf("SysTick 4");
 }
 
 void PLL_Init(void){
