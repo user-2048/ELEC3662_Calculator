@@ -1,4 +1,7 @@
 #include "lcd.h"
+#include "clock.h"
+#include "keypad.h"
+#include <stdio.h>
 
 void lcdInit(volatile unsigned long delay) {
 	// initialise PA2 and PA3 - took out lock statement

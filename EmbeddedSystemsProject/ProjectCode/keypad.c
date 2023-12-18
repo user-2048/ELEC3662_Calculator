@@ -1,4 +1,7 @@
 #include "keypad.h"
+#include "clock.h"
+#include "lcd.h"
+#include <stdio.h>
 
 // PORTD and PORTE setup and number.
 void keypadInit(){ volatile unsigned long delay; 

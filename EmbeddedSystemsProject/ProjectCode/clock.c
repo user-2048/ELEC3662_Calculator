@@ -1,6 +1,9 @@
 // delays - 15ms, 4.1ms, 100us
 // use an 80MHz clock frequency PLL for ease of calculations.
 #include "clock.h"
+#include "keypad.h"
+#include "lcd.h"
+#include <stdio.h>
 
 void SysTick_Init(void){
   NVIC_ST_CTRL_R = 0;                   // disable SysTick during setup

@@ -1,7 +1,4 @@
 #include "defines.h"
-#include "clock.h"
-#include "lcd.h"
-#include <stdio.h>
 
 void keypadInit(void); // PORTD and PORTE setup and number of rows/columns of the matrix.
 
