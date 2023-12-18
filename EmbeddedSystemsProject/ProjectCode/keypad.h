@@ -1,4 +1,4 @@
-
+#include "defines.h"
 void keypadInit(void); // PORTD and PORTE setup and number of rows/columns of the matrix.
 
 unsigned char readKeypad(); // This function returns the key pressed in the keypad matrix.

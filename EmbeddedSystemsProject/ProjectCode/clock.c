@@ -1,16 +1,6 @@
 // delays - 15ms, 4.1ms, 100us
 // use an 80MHz clock frequency PLL for ease of calculations.
 
-//PLL related Defines
-#define SYSCTL_RIS_R          (*((volatile unsigned long *)0x400FE050))	
-#define SYSCTL_RCC_R          (*((volatile unsigned long *)0x400FE060))
-#define SYSCTL_RCC2_R         (*((volatile unsigned long *)0x400FE070))	
-
-//SysTick related Defines	
-#define NVIC_ST_CTRL_R        (*((volatile unsigned long *)0xE000E010))
-#define NVIC_ST_RELOAD_R      (*((volatile unsigned long *)0xE000E014))
-#define NVIC_ST_CURRENT_R     (*((volatile unsigned long *)0xE000E018))
-
 void SysTick_Init(void){
   NVIC_ST_CTRL_R = 0;                   // disable SysTick during setup
   NVIC_ST_RELOAD_R = 0x00FFFFFF;        // maximum reload value - 24bit down-counter. This value sewts the period of the timer
@@ -42,11 +32,11 @@ void PLL_Init(void){
 
 // The delay parameter is in units of the 80 MHz core clock. (0.0125 ns) - *delay variable in ms*
 void SysTick_Wait(unsigned long delay){
-    d = (delay * 80e6);
+    unsigned long d = (delay * 80e6);
     NVIC_ST_RELOAD_R = d-1;  // number of counts to wait
     NVIC_ST_CURRENT_R = 0;       // any value written to CURRENT clears
     while((NVIC_ST_CTRL_R&0x00010000)==0){ 
     ; // wait for count flag
     }
-    printf("waited %i ms.", delay);
+    printf("Waited!!");
 }
