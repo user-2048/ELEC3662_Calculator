@@ -48,17 +48,18 @@
 #define GPIO_PORTE_AMSEL_R      (*((volatile unsigned long *)0x40024528))
 #define GPIO_PORTE_PCTL_R       (*((volatile unsigned long *)0x4002452C))
 
-// // GPIO Clock Register - May be able to delete!!
-// #define SYSCTL_RCGC2_R          (*((volatile unsigned long *)0x400FE108)) 
+// GPIO Clock Register
+#define SYSCTL_RCGC2_R          (*((volatile unsigned long *)0x400FE108)) 
+
 //PLL related Defines
-#define SYSCTL_RIS_R          (*((volatile unsigned long *)0x400FE050))	
-#define SYSCTL_RCC_R          (*((volatile unsigned long *)0x400FE060))
-#define SYSCTL_RCC2_R         (*((volatile unsigned long *)0x400FE070))	
+#define SYSCTL_RIS_R            (*((volatile unsigned long *)0x400FE050))	
+#define SYSCTL_RCC_R            (*((volatile unsigned long *)0x400FE060))
+#define SYSCTL_RCC2_R           (*((volatile unsigned long *)0x400FE070))	
 
 //SysTick related Defines	
-#define NVIC_ST_CTRL_R        (*((volatile unsigned long *)0xE000E010))
-#define NVIC_ST_RELOAD_R      (*((volatile unsigned long *)0xE000E014))
-#define NVIC_ST_CURRENT_R     (*((volatile unsigned long *)0xE000E018))
+#define NVIC_ST_CTRL_R          (*((volatile unsigned long *)0xE000E010))
+#define NVIC_ST_RELOAD_R        (*((volatile unsigned long *)0xE000E014))
+#define NVIC_ST_CURRENT_R       (*((volatile unsigned long *)0xE000E018))
 
 
 #endif // DEFINES_H_

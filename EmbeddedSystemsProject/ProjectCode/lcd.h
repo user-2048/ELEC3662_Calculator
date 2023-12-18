@@ -1,6 +1,6 @@
 #include "defines.h"
 
-void lcdInit(volatile unsigned long delay);
+void lcdInit(void);
 
 void lcdENPulse(); // to latch commands
 

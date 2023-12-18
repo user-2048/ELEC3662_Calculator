@@ -36,8 +36,7 @@ void PLL_Init(void){
 
 // The delay parameter is in units of the 80 MHz core clock. (0.0125 ns) - *delay variable in ms*
 void SysTick_Wait(unsigned long delay){
-    unsigned long d = (delay * 80e6);
-    NVIC_ST_RELOAD_R = d-1;  // number of counts to wait
+    NVIC_ST_RELOAD_R = delay-1;  // number of counts to wait
     NVIC_ST_CURRENT_R = 0;       // any value written to CURRENT clears
     while((NVIC_ST_CTRL_R&0x00010000)==0){ 
     ; // wait for count flag
