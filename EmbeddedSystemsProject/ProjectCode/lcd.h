@@ -1,5 +1,5 @@
 
-void lcdinit(volatile unsigned long delay);
+void lcdInit(volatile unsigned long delay);
 
 void lcdENPulse(); // to latch commands
 

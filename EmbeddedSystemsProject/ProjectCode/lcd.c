@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void lcdinit(volatile unsigned long delay) {
+void lcdInit(volatile unsigned long delay) {
 	// initialise PA2 and PA3 - took out lock statement
 	SYSCTL_RCGC2_R |= 0x08;     	  // 1) activate bit 1
     delay = SYSCTL_RCGC2_R;           // delay  

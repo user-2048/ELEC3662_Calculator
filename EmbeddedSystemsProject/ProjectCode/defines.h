@@ -1,6 +1,9 @@
 #ifndef DEFINES_H_  
 #define DEFINES_H_
 
+// Constant declarations to access port registers using 
+// symbolic names instead of addresses
+
 // definitions
 // define port A pins 2 & 3 : Port A Base Address = 0x4000.4000
 #define GPIO_PORTA_DATA_R       (*((volatile unsigned long *)0x400043FC)) // pin-specific referencing as we are only using pins 2 and 3
@@ -24,7 +27,6 @@
 #define GPIO_PORTB_AMSEL_R      (*((volatile unsigned long *)0x40005528))
 #define GPIO_PORTB_PCTL_R       (*((volatile unsigned long *)0x4000552C))
 
-
 // port d, pins [0,3] : Port D Base Address = 0x4000.7000
 #define GPIO_PORTD_DATA_R       (*((volatile unsigned long *)0x4000703C)) // Reference only [0,3]
 #define GPIO_PORTD_DIR_R        (*((volatile unsigned long *)0x40007400))
@@ -46,7 +48,7 @@
 #define GPIO_PORTE_AMSEL_R      (*((volatile unsigned long *)0x40024528))
 #define GPIO_PORTE_PCTL_R       (*((volatile unsigned long *)0x4002452C))
 
-// GPIO Clock Register
-#define SYSCTL_RCGC2_R          (*((volatile unsigned long *)0x400FE108)) 
+// // GPIO Clock Register - May be able to delete!!
+// #define SYSCTL_RCGC2_R          (*((volatile unsigned long *)0x400FE108)) 
 
 #endif // DEFINES_H_
