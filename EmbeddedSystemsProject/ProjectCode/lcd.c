@@ -2,7 +2,7 @@
 
 void lcdinit(volatile unsigned long delay) {
 	// initialise PA2 and PA3 - took out lock statement
-	SYSCTL_RCGC2_R |= 0x08;     			// 1) activate bit 1
+	SYSCTL_RCGC2_R |= 0x08;     	  // 1) activate bit 1
     delay = SYSCTL_RCGC2_R;           // delay  
     GPIO_PORTA_CR_R = 0x30;           // allow changes to PA2, PA3       
     GPIO_PORTA_AMSEL_R = 0x00;        // 3) disable analog function
@@ -12,7 +12,7 @@ void lcdinit(volatile unsigned long delay) {
     GPIO_PORTA_DEN_R = 0x06;          // 7) enable digital pins PA2, PA3
         
 	// initialise PB4:PB7 - took out lock statement
-	SYSCTL_RCGC2_R |= 0x10;     			// 1) activate bit 2
+	SYSCTL_RCGC2_R |= 0x10;     	  // 1) activate bit 2
     delay = SYSCTL_RCGC2_R;           // delay  
     GPIO_PORTB_CR_R = 0x3C0;          // allow changes to PB4:PB7      
     GPIO_PORTB_AMSEL_R = 0x00;        // 3) disable analog function
