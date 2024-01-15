@@ -5,7 +5,7 @@
 
 // PORTD and PORTE setup and number.
 void keypadInit(){ volatile unsigned long delay; 
-	// init PORTD [0,3]
+	// init PORTD [0,3] - These will be the keypad COLUMNS
 	SYSCTL_RCGC2_R |= 0x20;     			// 1) activate bit 3
   delay = SYSCTL_RCGC2_R;           // delay  
 	GPIO_PORTD_LOCK_R = 0x4C4F434B;   // 2) unlock PortD PD0  
@@ -17,7 +17,7 @@ void keypadInit(){ volatile unsigned long delay;
   GPIO_PORTD_PDR_R = 0x3C;          // enable pull-down resistor on bits PD3-PD0
   GPIO_PORTD_DEN_R = 0x0F;          // 7) enable digital pins PD3-PD0
 
-	// init PORTE [0,3]
+	// init PORTE [0,3] - These will be the keypad ROWS
 	SYSCTL_RCGC2_R |= 0x40;     			// 1) activate bit 4
   delay = SYSCTL_RCGC2_R;           // delay
 	GPIO_PORTE_LOCK_R = 0x4C4F434B;   // 2) unlock PortE PE0  
@@ -32,10 +32,26 @@ void keypadInit(){ volatile unsigned long delay;
 
 // This function returns the key pressed in the keypad matrix.
 unsigned char readKeypad() {
+  // store keypad layout in a 2D character array:
+  char keypad[4][4] = {
+    {'1', '2', '3', 'A'},
+    {'4', '5', '6', 'B'},
+    {'7', '8', '9', 'C'},
+    {'*', '0', '#', 'D'}
+  };
 
+  for (int row = 0; row < 4; row++) {
+    for (int col = 0; col < 4; col++) {
+      if ()
+    }
+  }
+
+    
+
+  return 0;
 }
 
 // This function returns the value of the pressed keypad button. could combine with readKeypad.
 char decodeKeyPress(unsigned char k) {
-	
+	return 0;
 }

@@ -17,14 +17,13 @@
 #include <math.h>
 
 // 2. Declarations Section
+
 //   Global Variables
 
 // 3. Subroutines Section
 // MAIN: Mandatory for a C Program to be executable
 int main(void){    
   // // Call initialising functions
-  printf("Main function called\n");
-  printf("just before systick\n");
   SysTick_Init();
   // PLL_Init();
   // keypadInit();

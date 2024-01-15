@@ -41,6 +41,7 @@ void sendDisplayByte() {
     // sends an 8 bit quantity to the LCD. Must be sent 4 at a time using sendDisplayNibble() twice.
     // send Bits 4-7 first, then bits 0-3.
     // see section 5.5 on pg. 9 of the datasheet for an example.
+    
 }
 
 void initDisplayPort() {
