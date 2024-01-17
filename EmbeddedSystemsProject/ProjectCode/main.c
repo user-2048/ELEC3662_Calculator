@@ -17,6 +17,7 @@
 
 // 2. Declarations Section
 // Global vaiables
+int power = 0;
 char key;
 double number1 = 0;
 double number2 = 0;
@@ -44,7 +45,8 @@ int main(void){
 void runCalculator(void) {
   double answer = 0;
 
-	while (1) {
+  power = 1;
+	while (power) {
     key = readKeypad();
 
     while ('0' <= key && key <= '9') { // key is a number
@@ -88,6 +90,7 @@ void runCalculator(void) {
     if (key == '*') {
       answer = calculate();
       // display answer
+      SysTick_Wait(WAIT_30s);
     }
     // for any key that isn't a number, do nothing
     ;
@@ -95,6 +98,8 @@ void runCalculator(void) {
       clearAll();
     }
   }
+  power = 0;
+  SysTick_Wait(WAIT_3s);
 }
 
 void clearAll() {

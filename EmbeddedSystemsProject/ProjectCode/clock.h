@@ -2,6 +2,8 @@
 #include "defines.h"
 
 // define time values for Systick_Wait
+#define WAIT_30s 2400000000
+#define WAIT_3s 240000000
 #define WAIT_15ms 1200000
 #define WAIT_4p1ms 328000
 #define WAIT_100us 8000
