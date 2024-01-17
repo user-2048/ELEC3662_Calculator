@@ -5,3 +5,5 @@ void keypadInit(void); // PORTD and PORTE setup and number of rows/columns of th
 unsigned char readKeypad(); // This function returns the key pressed in the keypad matrix.
 
 char decodeKeyPress(unsigned char k); // This function returns the value of the pressed keypad button. could combine with readKeypad.
+
+int decodeNumkey(char c);

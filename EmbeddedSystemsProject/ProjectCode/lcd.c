@@ -51,10 +51,10 @@ void initDisplayPort() {
 
 void lcdWriteCommand(unsigned char command) {
     // Send the high nibble first
-    SendDisplayNibble((command >> 4) & 0x0F, 0);
+    sendDisplayNibble((command >> 4) & 0x0F, 0);
 
     // Send the low nibble
-    SendDisplayNibble(command & 0x0F, 0);
+    sendDisplayNibble(command & 0x0F, 0);
 
     // Additional delay if needed
     SysTick_Wait(WAIT_4p1ms); // Adjust the delay as necessary
@@ -77,10 +77,10 @@ void sendDisplayByte(unsigned char byte, int isData) {
     // see section 5.5 on pg. 9 of the datasheet for an example.
 
     // Send the high nibble
-    SendDisplayNibble((byte >> 4) & 0x0F, 1); // Assuming RS is set for data
+    sendDisplayNibble((byte >> 4) & 0x0F, 1); // Assuming RS is set for data
 
     // Send the low nibble
-    SendDisplayNibble(byte & 0x0F, 1); // Assuming RS is set for data
+    sendDisplayNibble(byte & 0x0F, 1); // Assuming RS is set for data
 
     // Additional delay if needed
     SysTick_Wait(WAIT_4p1ms); // Adjust the delay as necessary
@@ -111,41 +111,4 @@ void lcdENPulse(void) {
 	SysTick_Wait(WAIT_450ns); // pulse width of 450ns
 	GPIO_PA2_EN = 0x00;     // pulse EN to low
 	SysTick_Wait(WAIT_450ns);
-}
-
-/**************************************************************************/
-
-
-void initDisplayPort() { 
-    GPIO_DB     = 0x03;     // function set 
-    SysTick_Wait(WAIT_4p1ms);
-
-    GPIO_PA3_RS = 0x00;     // set to instruction mode (0)
-    GPIO_DB     = 0x03;     // DB4, DB5
-    SysTick_Wait(WAIT_4p1ms); // wait for command to be processed
-    
-    GPIO_PA3_RS = 0x00;
-    GPIO_DB     = 0x03;
-    SysTick_Wait(WAIT_100us);
-
-    GPIO_PA3_RS = 0x00;
-    GPIO_DB     = 0x03;
-    GPIO_DB     = 0x02;
-
-    // other init commands:
-    // send 4-bit data, 2 lines with 5x8 font
-    // display, cursor, and blink ON
-    lcdWriteCommand(0x28); // 4-bit, 2-line, 5x8 character  (0000101000 = 0x28)
-    lcdWriteCommand(0x08); // Display off control           (0000001000 = 0x08)
-    lcdWriteCommand(0x0F); // Display on control            (0000001111 = 0x0F)
-    lcdWriteCommand(0x01); // Clear display
-    lcdWriteCommand(0x06); // Entry mode set
-}
-
-void lcdGoto(unsigned char row, unsigned char column) { 
-    if (row == 0) {
-        lcdWriteCommand(0x80 + column);
-    } else {
-        lcdWriteCommand(0xC0 + column);
-    }
 }
