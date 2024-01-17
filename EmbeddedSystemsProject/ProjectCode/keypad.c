@@ -31,6 +31,7 @@ void keypadInit(){ volatile unsigned long delay;
 }
 
 // This function returns the key pressed in the keypad matrix.
+// decodeKeyPress() is implemented within this function so no need to make a separate function
 unsigned char readKeypad() {
   // store keypad layout in a 2D character array:
   char keypad[4][4] = {
@@ -40,18 +41,37 @@ unsigned char readKeypad() {
     {'*', '0', '#', 'D'}
   };
 
-  for (int row = 0; row < 4; row++) {
-    for (int col = 0; col < 4; col++) {
-      if ()
+  for (int col = 0; col < 4; col++) {
+    // set current column to HIGH
+    GPIO_PORTD_DATA_R = 1 << col;
+
+    // delay
+    SysTick_Wait(WAIT_450ns);
+
+    int rowState = GPIO_PORTD_DATA_R & 0x0F;
+
+    for (int row = 0; row < 4; row++) {
+      if ((rowState & (1 << row)) == 0) {
+        // Key is pressed, get the corresponding character
+        char button = keypad[row][col];
+        // Reset the current column to LOW after reading
+        GPIO_PORTD_DATA_R = 0;
+
+        return button;
+      }
     }
   }
 
-    
-
-  return 0;
+  return '\0'; // no key was pressed
 }
 
-// This function returns the value of the pressed keypad button. could combine with readKeypad.
-char decodeKeyPress(unsigned char k) {
-	return 0;
+int decodeNumkey(char c) {
+  // Check if the character is a digit
+  if ('0' <= c && c <= '9') {
+      // Convert the character to its integer value
+      return c - '0';
+  } else {
+      // Handle other cases or return an error value
+      return -1; // Example: Return -1 for non-digit characters
+  }
 }

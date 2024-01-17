@@ -7,8 +7,8 @@
 // definitions
 // define port A pins 2 & 3 : Port A Base Address = 0x4000.4000
 #define GPIO_PORTA_DATA_R       (*((volatile unsigned long *)0x400043FC)) // pin-specific referencing as we are only using pins 2 and 3
-#define GPIO_PA2 				(*((volatile unsigned long *)0x40004010))
-#define GPIO_PA3				(*((volatile unsigned long *)0x40004020))
+#define GPIO_PA2_EN 			(*((volatile unsigned long *)0x40004010)) // Enable signal pin
+#define GPIO_PA3_RS				(*((volatile unsigned long *)0x40004020)) // Register select pin
 #define GPIO_PORTA_DIR_R        (*((volatile unsigned long *)0x40004400)) // Pin Direction Register
 #define GPIO_PORTA_AFSEL_R      (*((volatile unsigned long *)0x40004420)) // Special Function Enable
 #define GPIO_PORTA_DEN_R        (*((volatile unsigned long *)0x4000451C)) // Digital Pin Enable
@@ -18,7 +18,7 @@
 #define GPIO_PORTA_PCTL_R       (*((volatile unsigned long *)0x4000452C)) // Special Function Specifier
 	
 // port b, pins [4,7] : Port B Base Address = 0x4000.5000
-#define GPIO_PORTB_DATA_R       (*((volatile unsigned long *)0x400053C0)) // Reference only [4,7]
+#define GPIO_PORTB_DATA_R       (*((volatile unsigned long *)0x400053FC)) // Reference whole register
 #define GPIO_PORTB_DIR_R        (*((volatile unsigned long *)0x40005400))
 #define GPIO_PORTB_AFSEL_R      (*((volatile unsigned long *)0x40005420))
 #define GPIO_PORTB_DEN_R        (*((volatile unsigned long *)0x4000551C))
@@ -26,6 +26,7 @@
 #define GPIO_PORTB_CR_R         (*((volatile unsigned long *)0x40005524))
 #define GPIO_PORTB_AMSEL_R      (*((volatile unsigned long *)0x40005528))
 #define GPIO_PORTB_PCTL_R       (*((volatile unsigned long *)0x4000552C))
+#define GPIO_DB                 (*((volatile unsigned long *)0x400053C0)) // Reference only [4,7] for DB
 
 // port d, pins [0,3] : Port D Base Address = 0x4000.7000
 #define GPIO_PORTD_DATA_R       (*((volatile unsigned long *)0x4000703C)) // Reference only [0,3]
@@ -37,6 +38,7 @@
 #define GPIO_PORTD_CR_R         (*((volatile unsigned long *)0x40007524))
 #define GPIO_PORTD_AMSEL_R      (*((volatile unsigned long *)0x40007528))
 #define GPIO_PORTD_PCTL_R       (*((volatile unsigned long *)0x4000752C))
+
 
 // port e, pins [0,3] : Port E Base Address = 0x4002.4000
 #define GPIO_PORTE_DATA_R       (*((volatile unsigned long *)0x4002403C)) // Reference only [0,3]
