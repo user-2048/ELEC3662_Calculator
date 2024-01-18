@@ -50,7 +50,7 @@ void runCalculator(void) {
     key = readKeypad();
 
     while ('0' <= key && key <= '9') { // key is a number
-    	// writeCharater(key, 1)
+    	sendDisplayByte(key, 1);
 		int n = decodeNumkey(key);
 		number1 = (number1*10)+n; // store first number
     	key = readKeypad(); // read next key
@@ -58,38 +58,56 @@ void runCalculator(void) {
 	  if (key == 'A' || key == 'B' || key == 'C' || key == 'D') { // operators A, B, C, D
       if (key == 'D') {
         key = readKeypad();
-        // write corresponding character to display SHIFTED
         // store operator in op variable
+        // write corresponding character to display SHIFTED
         if (key == 'A') {	
-        operator = 'x';
+          operator = 'x';
+          sendDisplayByte(operator, 1);
+
         } else if (key == 'B') { 
-        operator = '/';
+          operator = '/';
+          sendDisplayByte(operator, 1);
+
         } else if (key == 'C') { 
-        operator = 'E';
+          operator = 'E';
+          sendDisplayByte(operator, 1);
+
         }
       } else {
-        // write corresponding character to display
         // store operator in op variable
+        // write corresponding character to display
         if (key == 'A') {
-        operator = '+';
+          operator = '+';
+          sendDisplayByte(operator, 1);
+
         } else if (key == 'B') {
-        operator = '-';
+          operator = '-';
+          sendDisplayByte(operator, 1);
+
         } else if (key == 'C') {
-        operator = '.';
+          operator = '.';
+          sendDisplayByte(operator, 1);
+
         }
       }
     }
 
     key = readKeypad();
     while ('0' <= key && key <= '9') { // key is a number
-      // writeCharater(key, 1)
+      sendDisplayByte(key, 1);
       int n = decodeNumkey(key);
       number2 = (number2*10)+n; // store first number
-        key = readKeypad(); // read next key
-      }
+      key = readKeypad(); // read next key
+    }
+
     if (key == '*') {
       answer = calculate();
-      // display answer
+
+      // convert to string to display
+      char str[100]; 
+      sprintf(str, "%f", answer); 
+      lcdWriteRamString(*str); // send string to print on LCD
+
       SysTick_Wait(WAIT_30s);
     }
     // for any key that isn't a number, do nothing
@@ -108,7 +126,7 @@ void clearAll() {
   number1 = 0;
   number2 = 0;
   operator = '\0';
-  // zero any other variables TODO
+  // zero any other variables
 }
 
 double calculate() {
